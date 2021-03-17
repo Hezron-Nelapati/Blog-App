@@ -1,18 +1,30 @@
+import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import React from 'react';
+import { Provider } from './src/context/BlogContext';
+import CreateScreen from './src/screens/CreateScreen';
 import IndexScreen from './src/screens/IndexScreen';
+import ShowScreen from './src/screens/ShowScreen';
+import EditScreen from './src/screens/EditScreen';
 
 const navigator = createStackNavigator({
-  Index: IndexScreen
+  Index: IndexScreen,
+  Show: ShowScreen,
+  Create: CreateScreen,
+  Edit: EditScreen
 }, {
   initialRouteName: 'Index',
   defaultNavigationOptions: {
     title: 'Blogs'
   }
 });
+
 const App = createAppContainer(navigator);
 
 export default () => {
-  return <App />
-}
+  return (
+    <Provider>
+      <App />
+    </Provider>
+  );
+};
